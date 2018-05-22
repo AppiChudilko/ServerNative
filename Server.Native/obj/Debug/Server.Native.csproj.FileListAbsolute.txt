@@ -1,0 +1,7 @@
+C:\Users\racke\RiderProjects\ServerNative\Server.Native\bin\Debug\Server.Native.dll
+C:\Users\racke\RiderProjects\ServerNative\Server.Native\bin\Debug\Server.Native.pdb
+C:\Users\racke\RiderProjects\ServerNative\Server.Native\bin\Debug\CitizenFX.Core.dll
+C:\Users\racke\RiderProjects\ServerNative\Server.Native\obj\Debug\Server.Native.csprojResolveAssemblyReference.cache
+C:\Users\racke\RiderProjects\ServerNative\Server.Native\obj\Debug\Server.Native.csproj.CoreCompileInputs.cache
+C:\Users\racke\RiderProjects\ServerNative\Server.Native\obj\Debug\Server.Native.dll
+C:\Users\racke\RiderProjects\ServerNative\Server.Native\obj\Debug\Server.Native.pdb

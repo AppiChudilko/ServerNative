@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.0.0
+MinimumVisualStudioVersion = 10.0.0.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Native", "Server.Native\Server.Native.csproj", "{1AE19441-A1A1-4EF7-8701-2E6A74793395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Native", "Client.Native\Client.Native.csproj", "{E38CEB8A-B58A-46A9-9E43-9CA2BC5C5BA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1AE19441-A1A1-4EF7-8701-2E6A74793395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE19441-A1A1-4EF7-8701-2E6A74793395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE19441-A1A1-4EF7-8701-2E6A74793395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE19441-A1A1-4EF7-8701-2E6A74793395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38CEB8A-B58A-46A9-9E43-9CA2BC5C5BA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38CEB8A-B58A-46A9-9E43-9CA2BC5C5BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38CEB8A-B58A-46A9-9E43-9CA2BC5C5BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38CEB8A-B58A-46A9-9E43-9CA2BC5C5BA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
