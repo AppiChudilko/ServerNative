@@ -51,9 +51,9 @@ namespace Server.Native
             TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetPlayerInvisible", playerServerId, invisible);
         }
         
-        public static void PlayerTeleportToPosition(int playerServerId, float x, float y, float z)
+        public static void TeleportPlayerToPosition(int playerServerId, float x, float y, float z)
         {
-            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "PlayerTeleportToPosition", playerServerId, x, y, z);
+            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "TeleportPlayerToPosition", playerServerId, x, y, z);
         }
         
         public static int GetPlayerServerId(object handle)

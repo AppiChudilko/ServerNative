@@ -128,12 +128,12 @@ namespace Client.Native
             }
         }
         
-        public static void PlayerTeleportToPosition(int playerServerId, float x, float y, float z)
+        public static void TeleportPlayerToPosition(int playerServerId, float x, float y, float z)
         {
-            TriggerServerEvent(Shared.TriggerNsToServer + "PlayerTeleportToPosition", playerServerId, x, y, z);
+            TriggerServerEvent(Shared.TriggerNsToServer + "TeleportPlayerToPosition", playerServerId, x, y, z);
         }
         
-        public static async void PlayerTeleportToPosition(float x, float y, float z)
+        public static async void TeleportPlayerToPosition(float x, float y, float z)
         {
             DoScreenFadeOut(500);
 
