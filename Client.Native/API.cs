@@ -75,6 +75,29 @@ namespace Client.Native
         {
             World.WaypointPosition = new Vector3(x, y, 0);
         }
+
+        public static void SetPlayerSkin(int playerServerId, uint hash)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "SetPlayerSkin", playerServerId, hash);
+        }
+
+        public static void SetPlayerSkin(string modelName)
+        {
+            SetPlayerSkin((uint) GetHashKey(modelName));
+        }
+
+        public static async void SetPlayerSkin(uint hash)
+        {
+            RequestModel(hash);
+            while (!HasModelLoaded(hash))
+            {
+                RequestModel(hash);
+                await Delay(1);
+            }
+
+            SetPlayerModel(PlayerId(), hash);
+            SetModelAsNoLongerNeeded(hash);
+        }
         
         public static void SetPlayerFreeze(int playerServerId, bool freeze)
         {

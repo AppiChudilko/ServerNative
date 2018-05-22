@@ -40,6 +40,11 @@ namespace Server.Native
         {
             TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetWaypoint", x, y);
         }
+
+        public static void SetPlayerSkin(int playerServerId, uint hash)
+        {
+            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetPlayerSkin", playerServerId, hash);
+        }
         
         public static void SetPlayerFreeze(int playerServerId, bool freeze)
         {

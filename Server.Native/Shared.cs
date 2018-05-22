@@ -17,6 +17,7 @@ namespace Server.Native
             EventHandlers.Add(TriggerNsToServer + "SendSubtitle", new Action<int, string, int, bool>(API.SendSubtitle));
             EventHandlers.Add(TriggerNsToServer + "SendSubtitleToAll", new Action<string, int, bool>(API.SendSubtitleToAll));
             EventHandlers.Add(TriggerNsToServer + "SetWaypoint", new Action<int, float, float>(API.SetWaypoint));
+            EventHandlers.Add(TriggerNsToServer + "SetPlayerSkin", new Action<int, uint>(API.SetPlayerSkin));
             EventHandlers.Add(TriggerNsToServer + "SetPlayerFreeze", new Action<int, bool>(API.SetPlayerFreeze));
             EventHandlers.Add(TriggerNsToServer + "SetPlayerInvisible", new Action<int, bool>(API.SetPlayerInvisible));
             EventHandlers.Add(TriggerNsToServer + "TeleportPlayerToPosition", new Action<int, float, float, float>(API.TeleportPlayerToPosition));
