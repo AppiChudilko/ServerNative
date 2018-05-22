@@ -5,12 +5,7 @@ using CitizenFX.Core;
 namespace Server.Native
 {
     public class API : BaseScript 
-    {
-        public static void SetWaypoint(int playerServerId, float x, float y)
-        {
-            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetWaypoint", x, y);
-        }
-        
+    {   
         public static void SendNotificationToAll(string message, bool blink = true, bool saveToBrief = true)
         {
             TriggerClientEvent(Shared.TriggerNsToClient + "SendNotification", message, blink, saveToBrief);
@@ -39,6 +34,26 @@ namespace Server.Native
         public static void SendSubtitle(int playerServerId, string message, int duration = 5000, bool drawImmediately = true)
         {
             TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SendSubtitle", message, duration, drawImmediately);
+        }
+        
+        public static void SetWaypoint(int playerServerId, float x, float y)
+        {
+            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetWaypoint", x, y);
+        }
+        
+        public static void SetPlayerFreeze(int playerServerId, bool freeze)
+        {
+            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetPlayerFreeze", playerServerId, freeze);
+        }
+        
+        public static void SetPlayerInvisible(int playerServerId, bool invisible)
+        {
+            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetPlayerInvisible", playerServerId, invisible);
+        }
+        
+        public static void PlayerTeleportToPosition(int playerServerId, float x, float y, float z)
+        {
+            TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "PlayerTeleportToPosition", playerServerId, x, y, z);
         }
         
         public static int GetPlayerServerId(object handle)

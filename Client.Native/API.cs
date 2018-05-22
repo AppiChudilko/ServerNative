@@ -6,16 +6,6 @@ namespace Client.Native
 {
     public class API : BaseScript 
     {
-        public static void SetWaypoint(int playerServerId, float x, float y)
-        {
-            TriggerServerEvent(Shared.TriggerNsToServer + "SetWaypoint", playerServerId, x, y);
-        }
-
-        public static void SetWaypoint(float x, float y)
-        {
-            World.WaypointPosition = new Vector3(x, y, 0);
-        }
-
         public static void SendNotificationToAll(string message, bool blink = true, bool saveToBrief = true)
         {
             TriggerServerEvent(Shared.TriggerNsToServer + "SendNotificationToAll", message, blink, saveToBrief);
@@ -74,6 +64,98 @@ namespace Client.Native
         public static int GetPlayerServerId()
         {
             return CitizenFX.Core.Native.API.GetPlayerServerId(PlayerId());
+        }
+        
+        public static void SetWaypoint(int playerServerId, float x, float y)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "SetWaypoint", playerServerId, x, y);
+        }
+
+        public static void SetWaypoint(float x, float y)
+        {
+            World.WaypointPosition = new Vector3(x, y, 0);
+        }
+        
+        public static void SetPlayerFreeze(int playerServerId, bool freeze)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "SetPlayerFreeze", playerServerId, freeze);
+        }
+        
+        public static void SetPlayerFreeze(bool freeze)
+        {
+            int playerId = PlayerId();
+            var ped = GetPlayerPed(playerId);
+            
+            SetPlayerControl(playerId, !freeze, 0);
+            if (!freeze)
+                FreezeEntityPosition(ped, false);
+            else
+            {
+                FreezeEntityPosition(ped, true);
+                
+                if (IsPedFatallyInjured(ped))
+                    ClearPedTasksImmediately(ped);
+            }
+        }
+        
+        public static void SetPlayerInvisible(int playerServerId, bool invisible)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "SetPlayerInvisible", playerServerId, invisible);
+        }
+        
+        public static void SetPlayerInvisible(bool invisible)
+        {
+            int playerId = PlayerId();
+            var ped = GetPlayerPed(playerId);
+            
+            if (!invisible)
+            {
+                if (!IsEntityVisible(ped))
+                    SetEntityVisible(ped, true, false);
+                
+                if (!IsPedInAnyVehicle(ped, true))
+                    SetEntityCollision(ped, true, true);
+        
+                SetPlayerInvincible(playerId, false);
+            } 
+            else 
+            {
+                if (IsEntityVisible(ped))
+                    SetEntityVisible(ped, false, false);
+        
+                SetEntityCollision(ped, false, true);
+                SetPlayerInvincible(playerId, true);
+            }
+        }
+        
+        public static void PlayerTeleportToPosition(int playerServerId, float x, float y, float z)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "PlayerTeleportToPosition", playerServerId, x, y, z);
+        }
+        
+        public static async void PlayerTeleportToPosition(float x, float y, float z)
+        {
+            DoScreenFadeOut(500);
+
+            while (IsScreenFadingOut())
+                await Delay(1);
+
+            NetworkFadeOutEntity(GetPlayerPed(-1), true, true);
+            SetPlayerFreeze(true);
+            
+            SetEntityCoords(GetPlayerPed(-1), x, y, z, true, false, false, true);
+
+            await Delay(500);
+
+            SetPlayerFreeze(false);
+            
+            await Delay(500);
+            NetworkFadeInEntity(GetPlayerPed(-1), false);
+            
+            DoScreenFadeIn(500);
+            
+            while (IsScreenFadingIn())
+                await Delay(1);
         }
         
         public static string[] StringToArray(string inputString)
