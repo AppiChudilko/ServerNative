@@ -1,5 +1,6 @@
 ﻿using System;
 using CitizenFX.Core;
+using CitizenFX.Core.Native;
 using static CitizenFX.Core.Native.API;
 
 namespace Client.Native
@@ -204,6 +205,90 @@ namespace Client.Native
             
             while (IsScreenFadingIn())
                 await Delay(1);
+        }
+
+        public static void CallNative(string nativeName, params InputArgument[] args)
+        {
+            foreach(uint hash in Enum.GetValues(typeof(Hash)))
+            {
+                string name = Enum.GetName(typeof(Hash), hash);
+                if (nativeName != name) continue;
+
+                switch (args.GetLength(0))
+                {
+                    case 1:
+                        Function.Call((Hash) hash, args[0]);
+                        break;
+                    case 2:
+                        Function.Call((Hash) hash, args[0], args[1]);
+                        break;
+                    case 3:
+                        Function.Call((Hash) hash, args[0], args[1], args[2]);
+                        break;
+                    case 4:
+                        Function.Call((Hash) hash, args[0], args[1], args[2], args[3]);
+                        break;
+                    case 5:
+                        Function.Call((Hash) hash, args[0], args[1], args[2], args[3], args[4]);
+                        break;
+                    case 6:
+                        Function.Call((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5]);
+                        break;
+                    case 7:
+                        Function.Call((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+                        break;
+                    case 8:
+                        Function.Call((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+                        break;
+                    case 9:
+                        Function.Call((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]);
+                        break;
+                    case 10:
+                        Function.Call((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]);
+                        break;
+                
+                }
+            }
+        }
+
+        //idk, work it or not
+        public static T CallNativeWithReturn<T>(string nativeName, params InputArgument[] args)
+        {
+            foreach(uint hash in Enum.GetValues(typeof(Hash)))
+            {
+                string name = Enum.GetName(typeof(Hash), hash);
+                if (nativeName != name) continue;
+
+                switch (args.GetLength(0))
+                {
+                    case 1:
+                        return Function.Call<T>((Hash) hash, args[0]);
+                    case 2:
+                        return Function.Call<T>((Hash) hash, args[0], args[1]);
+                    case 3:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2]);
+                    case 4:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2], args[3]);
+                    case 5:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2], args[3], args[4]);
+                    case 6:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5]);
+                    case 7:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+                    case 8:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+                    case 9:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]);
+                    case 10:
+                        return Function.Call<T>((Hash) hash, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]);
+                
+                }
+                
+                return Function.Call<T>((Hash) hash);
+            }
+            
+            //lol
+            return Function.Call<T>(Hash._RETURN_TWO);
         }
         
         public static string[] StringToArray(string inputString)
