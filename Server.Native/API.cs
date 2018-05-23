@@ -56,6 +56,16 @@ namespace Server.Native
             TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "SetPlayerInvisible", playerServerId, invisible);
         }
         
+        public static void PlayPlayerAnimation(int playerServerId, string name, string name2, int flag = 49)
+        {
+            TriggerClientEvent(Shared.TriggerNsToClient + "PlayPlayerAnimation", playerServerId, name, name2, flag);
+        }
+        
+        public static void StopPlayerAnimation(int playerServerId)
+        {
+            TriggerClientEvent(Shared.TriggerNsToClient + "StopPlayerAnimation", playerServerId);
+        }
+        
         public static void TeleportPlayerToPosition(int playerServerId, float x, float y, float z)
         {
             TriggerClientEvent(ServerIdToPlayer(playerServerId), Shared.TriggerNsToClient + "TeleportPlayerToPosition", playerServerId, x, y, z);

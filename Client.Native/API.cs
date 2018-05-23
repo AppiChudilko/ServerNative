@@ -151,6 +151,31 @@ namespace Client.Native
             }
         }
         
+        
+        public static void PlayPlayerAnimation(int playerServerId, string name, string name2, int flag = 49)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "PlayPlayerAnimation", playerServerId, name, name2, flag);
+        }
+
+        public static async void PlayPlayerAnimation(string name, string name2, int flag = 49)
+        {
+            RequestAnimDict(name);
+            while (!HasAnimDictLoaded(name))
+                await Delay(1);
+
+            TaskPlayAnim(GetPlayerPed(-1), name, name2, 8f, -8, -1, flag, 0, false, false, false);
+        }
+        
+        public static void StopPlayerAnimation(int playerServerId)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "StopPlayerAnimation", playerServerId);
+        }
+
+        public static void StopPlayerAnimation()
+        {
+            ClearPedSecondaryTask(GetPlayerPed(-1));
+        }
+        
         public static void TeleportPlayerToPosition(int playerServerId, float x, float y, float z)
         {
             TriggerServerEvent(Shared.TriggerNsToServer + "TeleportPlayerToPosition", playerServerId, x, y, z);
