@@ -7,6 +7,12 @@ namespace Client.Native
 {
     public class API : BaseScript 
     {
+
+        public static void TiggerEventToPlayer(int playerServerId, string eventName, object args0 = null, object args1 = null, object args2 = null, object args3 = null, object args4 = null, object args5 = null, object args6 = null, object args7 = null, object args8 = null, object args9 = null, object args10 = null)
+        {
+            TriggerServerEvent(Shared.TriggerNsToServer + "TiggerEventToPlayer", playerServerId, eventName, args0, args1, args2, args3, args4, args5, args6, args7, args8, args9, args10);
+        }
+        
         public static void SendNotificationToAll(string message, bool blink = true, bool saveToBrief = true)
         {
             TriggerServerEvent(Shared.TriggerNsToServer + "SendNotificationToAll", message, blink, saveToBrief);
